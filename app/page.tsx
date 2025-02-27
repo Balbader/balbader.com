@@ -1,9 +1,5 @@
-import Image from 'next/image';
+import Home from '@/pages/home/Home';
 
-export default function Home() {
-	return (
-		<div>
-			<h1>Hello World</h1>
-		</div>
-	);
+export default function HomePage() {
+	return <Home />;
 }
