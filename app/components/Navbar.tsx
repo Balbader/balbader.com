@@ -39,10 +39,20 @@ const NavLink = styled.div`
  *
  * A vertical navigation bar fixed to the right side of the screen.
  * Features hover effects and animated links using Framer Motion.
+ * Links use anchor scrolling to navigate to specific sections of the page.
  */
 const Navbar = () => {
 	// State to track which link is currently being hovered
 	const [activeLink, setActiveLink] = useState<string | null>(null);
+
+	// Function to handle smooth scrolling to anchors
+	const scrollToSection = (id: string) => (e: React.MouseEvent) => {
+		e.preventDefault();
+		const element = document.getElementById(id);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
 
 	return (
 		<NavContainer>
@@ -52,7 +62,7 @@ const Navbar = () => {
 					onMouseEnter={() => setActiveLink('work')}
 					onMouseLeave={() => setActiveLink(null)}
 				>
-					<Link href="/work">
+					<Link href="#work" onClick={scrollToSection('work')}>
 						<motion.span
 							style={{
 								fontWeight: activeLink === 'work' ? 600 : 400,
@@ -75,7 +85,7 @@ const Navbar = () => {
 					onMouseEnter={() => setActiveLink('about')}
 					onMouseLeave={() => setActiveLink(null)}
 				>
-					<Link href="/about">
+					<Link href="#about" onClick={scrollToSection('about')}>
 						<motion.span
 							style={{
 								fontWeight: activeLink === 'about' ? 600 : 400,
@@ -98,7 +108,7 @@ const Navbar = () => {
 					onMouseEnter={() => setActiveLink('contact')}
 					onMouseLeave={() => setActiveLink(null)}
 				>
-					<Link href="/contact">
+					<Link href="#contact" onClick={scrollToSection('contact')}>
 						<motion.span
 							style={{
 								fontWeight: activeLink === 'contact' ? 600 : 400,
