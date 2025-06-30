@@ -7,12 +7,14 @@ import { cookies } from 'next/headers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Encore + Next.js',
+	title: 'Balbader.com',
 };
 
 const navLinks = [
 	{ href: '/', label: 'Home' },
-	{ href: '/admin', label: 'Admin Dashboard' },
+	{ href: '/about', label: 'About' },
+	{ href: '/work', label: 'Work' },
+	{ href: '/contact', label: 'Contact' },
 ];
 
 export default function RootLayout({
@@ -26,7 +28,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${inter.className} text-black bg-white`}>
 				<header>
-					<nav className="h-navBar bg-black text-white flex items-center justify-between p-5">
+					<nav className="h-navBar bg-black text-white flex items-center justify-end p-5">
 						<div className="flex items-center">
 							{navLinks.map(({ href, label }) => (
 								<Link
@@ -38,30 +40,6 @@ export default function RootLayout({
 								</Link>
 							))}
 						</div>
-
-						{isLoggedIn ? (
-							<form action="/auth/logout" method="post">
-								<button type="submit">Logout</button>
-							</form>
-						) : (
-							<form
-								className="space-x-2"
-								action="/auth/login"
-								method="post"
-							>
-								<input
-									type="text"
-									placeholder="Email"
-									name="email"
-								/>
-								<input
-									type="password"
-									placeholder="Password"
-									name="password"
-								/>
-								<button type="submit">Login</button>
-							</form>
-						)}
 					</nav>
 				</header>
 
