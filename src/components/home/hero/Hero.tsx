@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
 
 export default function Hero() {
@@ -10,13 +10,92 @@ export default function Hero() {
   const shape1Ref = useRef<HTMLDivElement>(null);
   const shape2Ref = useRef<HTMLDivElement>(null);
   const shape3Ref = useRef<HTMLDivElement>(null);
+  const backgroundRef = useRef<HTMLDivElement>(null);
+
+  // Mouse interaction handler - smooth parallax effect
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (!heroRef.current) return;
+
+    const rect = heroRef.current.getBoundingClientRect();
+    const normalizedX = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 to 1
+    const normalizedY = ((e.clientY - rect.top) / rect.height - 0.5) * 2; // -1 to 1
+
+    // Subtle parallax effect - different intensities for each shape
+    const intensity1 = 20; // Largest movement
+    const intensity2 = 15; // Medium movement
+    const intensity3 = 10; // Smallest movement
+
+    // Animate mouse offset - this will be applied to inner divs via CSS
+    if (shape1Ref.current) {
+      gsap.to(shape1Ref.current, {
+        "--mouse-x": `${normalizedX * intensity1}px`,
+        "--mouse-y": `${normalizedY * intensity1}px`,
+        duration: 1.2,
+        ease: "power1.out",
+      });
+    }
+
+    if (shape2Ref.current) {
+      gsap.to(shape2Ref.current, {
+        "--mouse-x": `${normalizedX * intensity2}px`,
+        "--mouse-y": `${normalizedY * intensity2}px`,
+        duration: 1.4,
+        ease: "power1.out",
+      });
+    }
+
+    if (shape3Ref.current) {
+      gsap.to(shape3Ref.current, {
+        "--mouse-x": `${normalizedX * intensity3}px`,
+        "--mouse-y": `${normalizedY * intensity3}px`,
+        duration: 1.6,
+        ease: "power1.out",
+      });
+    }
+  }, []);
+
+  // Reset mouse offset when mouse leaves
+  const handleMouseLeave = useCallback(() => {
+    gsap.to([shape1Ref.current, shape2Ref.current, shape3Ref.current], {
+      "--mouse-x": "0px",
+      "--mouse-y": "0px",
+      duration: 1.2,
+      ease: "power2.out",
+    });
+  }, []);
 
   useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
     const ctx = gsap.context(() => {
-      // Floating shapes animation
+      // Initialize CSS custom properties for mouse interaction
+      gsap.set([shape1Ref.current, shape2Ref.current, shape3Ref.current], {
+        "--mouse-x": "0px",
+        "--mouse-y": "0px",
+      });
+
+      // Initialize transforms with GSAP for better control
+      // Set initial positioning using xPercent/yPercent for centering
+      // These are the outer wrapper divs that GSAP will animate
+      gsap.set(shape1Ref.current, {
+        xPercent: -50,
+        yPercent: -50,
+      });
+      gsap.set(shape2Ref.current, {
+        xPercent: 50,
+        yPercent: 50,
+      });
+      gsap.set(shape3Ref.current, {
+        xPercent: 50,
+        yPercent: -50,
+      });
+
+      // Floating shapes animation (base animation)
+      // These animate the outer wrapper, mouse interaction animates inner divs
       gsap.to(shape1Ref.current, {
-        y: -30,
         x: 20,
+        y: -30,
         rotation: 15,
         duration: 8,
         repeat: -1,
@@ -25,8 +104,8 @@ export default function Hero() {
       });
 
       gsap.to(shape2Ref.current, {
-        y: 40,
         x: -30,
+        y: 40,
         rotation: -20,
         duration: 10,
         repeat: -1,
@@ -35,8 +114,8 @@ export default function Hero() {
       });
 
       gsap.to(shape3Ref.current, {
-        y: -20,
         x: 15,
+        y: -20,
         rotation: 10,
         duration: 12,
         repeat: -1,
@@ -62,8 +141,16 @@ export default function Hero() {
       });
     });
 
-    return () => ctx.revert();
-  }, []);
+    // Add mouse event listeners
+    hero.addEventListener("mousemove", handleMouseMove);
+    hero.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      ctx.revert();
+      hero.removeEventListener("mousemove", handleMouseMove);
+      hero.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [handleMouseMove, handleMouseLeave]);
 
   return (
     <section
@@ -71,27 +158,45 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Abstract background shapes */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div ref={backgroundRef} className="absolute inset-0 pointer-events-none">
         {/* Large gradient circle */}
         <div
           ref={shape1Ref}
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-linear-to-br from-primary/10 via-primary/5 to-transparent blur-3xl"
-          style={{ transform: "translate(-50%, -50%)" }}
-        />
+          className="absolute top-1/4 left-1/4"
+        >
+          <div
+            className="w-96 h-96 rounded-full bg-linear-to-br from-primary/10 via-primary/5 to-transparent blur-3xl"
+            style={{
+              transform: "translate(var(--mouse-x, 0px), var(--mouse-y, 0px))",
+            }}
+          />
+        </div>
 
         {/* Medium gradient blob */}
         <div
           ref={shape2Ref}
-          className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-linear-to-tr from-accent/8 via-accent/4 to-transparent blur-3xl"
-          style={{ transform: "translate(50%, 50%)" }}
-        />
+          className="absolute bottom-1/3 right-1/4"
+        >
+          <div
+            className="w-80 h-80 rounded-full bg-linear-to-tr from-accent/8 via-accent/4 to-transparent blur-3xl"
+            style={{
+              transform: "translate(var(--mouse-x, 0px), var(--mouse-y, 0px))",
+            }}
+          />
+        </div>
 
         {/* Small accent shape */}
         <div
           ref={shape3Ref}
-          className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-linear-to-bl from-ring/6 to-transparent blur-2xl"
-          style={{ transform: "translate(50%, -50%)" }}
-        />
+          className="absolute top-1/2 right-1/3"
+        >
+          <div
+            className="w-64 h-64 rounded-full bg-linear-to-bl from-ring/6 to-transparent blur-2xl"
+            style={{
+              transform: "translate(var(--mouse-x, 0px), var(--mouse-y, 0px))",
+            }}
+          />
+        </div>
       </div>
 
       {/* Subtle grid pattern overlay */}
