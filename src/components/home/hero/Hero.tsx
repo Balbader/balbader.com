@@ -219,7 +219,7 @@ export default function Hero() {
         >
           <div
             ref={shape1InnerRef}
-            className="w-96 h-96 rounded-full bg-linear-to-br from-primary/10 via-primary/5 to-transparent blur-3xl"
+            className="w-96 h-96 rounded-full bg-linear-to-br from-primary/25 via-primary/10 to-transparent blur-3xl dark:from-primary/10 dark:via-primary/5"
           />
         </div>
 
@@ -230,7 +230,7 @@ export default function Hero() {
         >
           <div
             ref={shape2InnerRef}
-            className="w-80 h-80 rounded-full bg-linear-to-tr from-accent/8 via-accent/4 to-transparent blur-3xl"
+            className="w-80 h-80 rounded-full bg-linear-to-tr from-accent/20 via-accent/10 to-transparent blur-3xl dark:from-accent/8 dark:via-accent/4"
           />
         </div>
 
@@ -241,14 +241,14 @@ export default function Hero() {
         >
           <div
             ref={shape3InnerRef}
-            className="w-64 h-64 rounded-full bg-linear-to-bl from-ring/6 to-transparent blur-2xl"
+            className="w-64 h-64 rounded-full bg-linear-to-bl from-ring/16 to-transparent blur-2xl dark:from-ring/6"
           />
         </div>
       </div>
 
       {/* Subtle grid pattern overlay */}
       <div
-        className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.02]"
         style={{
           backgroundImage: `
             linear-gradient(to right, currentColor 1px, transparent 1px),
