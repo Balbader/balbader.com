@@ -17,17 +17,17 @@ export default function ContactSection() {
               <Button size="lg" variant="outline" asChild>
                 <a href="mailto:hello@example.com">
                   <Mail className="mr-2 h-4 w-4" />
-                  Email Me
+                  Get In Touch
                 </a>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/Balbader" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </a>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/basilalba/" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="mr-2 h-4 w-4" />
                   LinkedIn
                 </a>
