@@ -75,21 +75,21 @@ export default function Hero() {
         {/* Large gradient circle */}
         <div
           ref={shape1Ref}
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-primary/10 via-primary/5 to-transparent blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-linear-to-br from-primary/10 via-primary/5 to-transparent blur-3xl"
           style={{ transform: "translate(-50%, -50%)" }}
         />
 
         {/* Medium gradient blob */}
         <div
           ref={shape2Ref}
-          className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-gradient-to-tr from-accent/8 via-accent/4 to-transparent blur-3xl"
+          className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-linear-to-tr from-accent/8 via-accent/4 to-transparent blur-3xl"
           style={{ transform: "translate(50%, 50%)" }}
         />
 
         {/* Small accent shape */}
         <div
           ref={shape3Ref}
-          className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-gradient-to-bl from-ring/6 to-transparent blur-2xl"
+          className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full bg-linear-to-bl from-ring/6 to-transparent blur-2xl"
           style={{ transform: "translate(50%, -50%)" }}
         />
       </div>
@@ -135,7 +135,7 @@ export default function Hero() {
 
       {/* Subtle scroll indicator */}
       <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
-        <div className="w-px h-16 bg-gradient-to-b from-foreground/20 to-transparent" />
+        <div className="w-px h-16 bg-linear-to-b from-foreground/20 to-transparent" />
       </div>
     </section>
   );
