@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Header() {
   const navRef = useRef<HTMLElement>(null);
@@ -53,6 +54,7 @@ export default function Header() {
                   <Linkedin className="h-5 w-5" />
                 </a>
               </Button>
+              <ModeToggle />
             </div>
           </div>
         </div>
