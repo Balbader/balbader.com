@@ -14,6 +14,7 @@ const skills = [
 
 export default function SkillsAndTechnologySection() {
   return (
+    <>
       <section id="skills" className="py-24">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
@@ -38,5 +39,6 @@ export default function SkillsAndTechnologySection() {
           </div>
         </div>
       </section>
+    </>
   );
 }
