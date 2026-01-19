@@ -111,7 +111,7 @@ export default function Hero() {
         <div className="max-w-5xl mx-auto text-center">
           <h1
             ref={titleRef}
-            className="text-7xl md:text-9xl lg:text-[12rem] font-light tracking-tighter mb-8 leading-none"
+            className="text-7xl md:text-9xl lg:text-[8rem] font-light tracking-tighter mb-8 leading-none"
             style={{
               fontFeatureSettings: '"kern" 1, "liga" 1',
               letterSpacing: "-0.02em",

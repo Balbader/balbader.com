@@ -15,7 +15,7 @@ export default function Header() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-xl font-semibold tracking-tight">
-              Portfolio
+              Basil Al Bader
             </div>
             <div className="hidden md:flex items-center gap-8">
               <Link
@@ -45,12 +45,12 @@ export default function Header() {
             </div>
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="icon" asChild>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/Balbader" target="_blank" rel="noopener noreferrer">
                   <Github className="h-5 w-5" />
                 </a>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/basilalba/" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-5 w-5" />
                 </a>
               </Button>

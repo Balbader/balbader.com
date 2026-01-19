@@ -10,15 +10,15 @@ export default function AboutSection() {
               <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>
             </div>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              I'm a passionate full-stack developer with a focus on creating
-              beautiful, functional, and user-centered digital experiences.
-              With expertise in modern web technologies, I bring ideas to life
-              through clean code and thoughtful design.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              When I'm not coding, you can find me exploring new technologies,
-              contributing to open-source projects, or sharing knowledge with
-              the developer community.
+              I’m a full-stack developer and solopreneur passionate about building intelligent products where AI meets real-world impact.
+              I specialize in Mastra.ai, Next.js, Tanstack, TypeScript with a focus on AI-driven web applications and agentic development crafting systems that don’t just respond, but think.
+              <br />
+              <br />
+              I thrive where technology, creativity, and purpose intersect turning abstract ideas into well-designed, scalable solutions. My background in full-stack engineering and prompt engineering allows me to bridge frontend aesthetics, backend logic, and AI reasoning into cohesive products.
+              <br />
+              <br />
+              If you’re passionate about AI innovation, developer empowerment, or building the future of hiring, I’d love to connect.
+              <br />
             </p>
           </div>
         </div>
