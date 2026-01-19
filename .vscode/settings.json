@@ -2,5 +2,7 @@
 	"editor.fontSize": 14,
 	"editor.tabSize": 2,
 	"files.autoSave": "afterDelay",
-	"editor.fontFamily": "'Lekton Nerd Font', 'Droid Sans Mono', 'monospace', monospace"
+	"editor.fontFamily": "'Lekton Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
+	"editor.formatOnSave": true,
+	"editor.formatOnType": true
 }
